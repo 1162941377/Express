@@ -7,18 +7,24 @@ const express = require("express");
 const app = express(); // 创建一个 express 应用
 ```
 
-## 登录和验证
+## 断点调试
 
-> 使用 cookie-parser
+> node --inspect 启动模块，node 进程会监听 9229 端口
 
-> 登录后给予 token：
+## 跨域之 JSNOP
 
-1）通过 cookie 给予，适配浏览器
+> 同源策略（协议、端口、主机名均相同）
 
-2）通过 header 给予，适配其它终端
+> 解决方案：JSONP、CORS
 
-> 对后续请求进行验证：
+> JSONP：
 
-1）解析 cookie 或 header 中的 token
+1）浏览器生成一个 script 元素，利用 src 访问数据无限制的特点，获取数据
 
-2）验证 token（通过继续后续处理；未通过给予错误）
+2）服务器响应一段 js 代码，调用某个函数，并把响应的数据传入
+
+> JSONP 的缺陷：
+
+1）会严重地影响服务器的正常响应格式
+
+2）只能使用 get 请求
