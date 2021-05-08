@@ -7,8 +7,18 @@ const express = require("express");
 const app = express(); // 创建一个 express 应用
 ```
 
-## 路由
+## 登录和验证
 
-> 一般使用的是 REST 风格
+> 使用 cookie-parser
 
-> 同样的请求地址，不同的请求方式，返回不同的请求结果
+> 登录后给予 token：
+
+1）通过 cookie 给予，适配浏览器
+
+2）通过 header 给予，适配其它终端
+
+> 对后续请求进行验证：
+
+1）解析 cookie 或 header 中的 token
+
+2）验证 token（通过继续后续处理；未通过给予错误）
